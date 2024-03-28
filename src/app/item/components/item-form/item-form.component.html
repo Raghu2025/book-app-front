@@ -1,0 +1,65 @@
+<app-modal>
+    <div class="modal-header">
+        Item Form
+    </div>
+    <div class="modal-body">
+        <form  [formGroup]="ItemForm" (ngSubmit)="submit()">
+            <div class="mb-6">
+                <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Title</label>
+                <input type="text" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" formControlName="title" placeholder="" required>
+                <div class="text-center" *ngIf="submitted && ItemForm.get('title')?.invalid">
+                    <p class="text-red-500 text-xs italic">Title is required</p>
+                  </div>
+            </div> 
+            <div class="mb-6">
+                <label for="role" class="block mb-2 text-sm font-medium text-gray-900" >Category</label>
+                <select type="role" id="role" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" formControlName="category" placeholder="" required>
+                    <option *ngFor="let c of categorys"  [value]="c.id">{{c.name | titlecase}}</option>
+                </select>
+                <div class="text-center" *ngIf="submitted && ItemForm.get('category')?.invalid">
+                    <p class="text-red-500 text-xs italic">Category is required</p>
+                  </div>
+            </div>
+
+            <div class="mb-6">
+                <label for="author" class="block mb-2 text-sm font-medium text-gray-900">Author</label>
+                <input type="text" id="author" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" formControlName="author" placeholder="" required>
+                <div class="text-center" *ngIf="submitted && ItemForm.get('author')?.invalid">
+                    <p class="text-red-500 text-xs italic">Author is required</p>
+                  </div>
+            </div>
+            <div class="mb-6">
+                <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Publication</label>
+                <input type="text" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" formControlName="publication" placeholder="" required>
+                <div class="text-center" *ngIf="submitted && ItemForm.get('title')?.invalid">
+                    <p class="text-red-500 text-xs italic">Publication is required</p>
+                  </div>
+            </div>
+            
+            <div class="mb-6">
+                <label for="number" class="block mb-2 text-sm font-medium text-gray-900"> Price</label>
+                <input min="0" type="number" id="number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " formControlName="price" placeholder="" required>
+                <div class="text-center" *ngIf="submitted && ItemForm.get('basePrice')?.invalid">
+                    <p class="text-red-500 text-xs italic"> Price is required</p>
+                  </div>
+            </div> 
+
+            <div class="mb-6">
+                <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Description</label>
+                <textarea type="text" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" formControlName="description" placeholder="" required></textarea>
+                <div class="text-center" *ngIf="submitted && ItemForm.get('description')?.invalid">
+                    <p class="text-red-500 text-xs italic">Description is required</p>
+                  </div>
+            </div> 
+            
+            <div class="mb-6">
+                <label class="block mb-2 text-sm font-medium text-gray-900" for="file_input">Upload Image</label>
+                <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50  focus:outline-none " aria-describedby="file_input_help" id="file_input" type="file" (change)="setImage($event)">
+                <div class="text-center" *ngIf="submitted && ItemForm.get('quantity')?.invalid">
+                    <p class="text-red-500 text-xs italic">Quantity is required</p>
+                  </div>
+            </div> 
+            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center ">Submit</button>
+        </form>
+    </div>
+</app-modal>

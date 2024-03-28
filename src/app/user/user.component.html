@@ -1,0 +1,76 @@
+<div>
+    <div class="w-full flex justify-end items-center my-3">
+        <button type="button" (click)="openModal()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2  focus:outline-none">Add</button>
+    </div>
+    
+   <div class="w-full flex flex-row justify-center items-center gap-2">
+    <mat-form-field>
+        <mat-label>Search</mat-label>
+        <input matInput (keyup)="applyFilter($event)" #input>
+    </mat-form-field>
+   </div>
+
+      
+    <div class="relative overflow-x-auto border">
+
+        <div class="shadow-lg">
+            <table mat-table [dataSource]="dataSource" matSort>
+                <ng-container matColumnDef="sn">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> SN </th>
+                    <td mat-cell *matCellDef="let row;"> {{row.sn}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name</th>
+                    <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Email</th>
+                    <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="address">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Address</th>
+                    <td mat-cell *matCellDef="let row"> {{row.address}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="createdAt">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Created Date</th>
+                    <td mat-cell *matCellDef="let row"> {{row.createdAt | date:"short"}} </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef>Action</th>
+                    <td class="w-full p-1" mat-cell *matCellDef="let row">
+                      <div class="w-full flex gap-1 justify-between items-center">
+                        <button  (click)="updater(row)" >
+                            <img class="flex-shrink-0 w-5 h-5 text-gray-500 group-hover:text-gray-900" src="assets/icons/edit.png"> 
+                           </button>
+                            <button  [disabled]="false" (click)="deleter(row.id)">
+                                <img class="flex-shrink-0 w-5 h-5 text-gray-500 group-hover:text-gray-900"  src="assets/icons/delete.png">  
+                            </button>
+                      </div>
+                          
+                    
+                    </td>
+                  </ng-container>
+                
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              
+                  <!-- Row shown when there is no matching data. -->
+                  <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                  </tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+        </div>
+    </div>
+</div>
+
+<ng-template #componentContainer></ng-template>
+<div class="flex justify-center gap-4 items-center">
+   
+   </div>

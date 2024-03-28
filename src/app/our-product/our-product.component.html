@@ -1,0 +1,19 @@
+<div class="w-full">
+    <app-navigation></app-navigation>
+<div class="w-full flex justify-start items-start p-5 flex-row flex-wrap">
+    <div class="w-80 bg-white rounded-lg shadow-md overflow-hidden m-2" *ngFor="let pro of products">
+        <div class="w-full flex justify-center items-center">
+            <img [src]="baseUrl+ 'product/getFile?fileName=' + pro.image" alt="Book Cover" class="max-h-40">
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-semibold mb-2">{{pro?.title}}</h3>
+          <p class="text-gray-700 mb-4">{{pro?.author}}</p>
+          <div class="flex items-center justify-between">
+            <span class="text-gray-800 font-semibold">NPR {{pro?.price}}</span>
+            <a [routerLink]="['/view',pro.id]" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">View</a>
+          </div>
+        </div>
+      </div>
+    
+</div>
+</div>
